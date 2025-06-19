@@ -18,7 +18,7 @@ class TemperatureWithCity(TemperatureBase):
     city: City
 
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 
 class Temperature(TemperatureBase):
@@ -27,4 +27,4 @@ class Temperature(TemperatureBase):
     recorded_at: datetime
 
     class Config:
-        from_attributes = True
+        orm_mode = True

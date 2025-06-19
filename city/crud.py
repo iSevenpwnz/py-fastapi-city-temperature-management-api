@@ -24,7 +24,7 @@ async def get_city_by_name(db: AsyncSession, name: str):
 
 
 async def create_city(db: AsyncSession, city: CityCreate):
-    db_city = DBCity(**city.model_dump())
+    db_city = DBCity(**city.dict())
     db.add(db_city)
     await db.commit()
     await db.refresh(db_city)
@@ -32,7 +32,7 @@ async def create_city(db: AsyncSession, city: CityCreate):
 
 
 async def update_city(db: AsyncSession, city_id: int, city_update: CityUpdate):
-    city_data = city_update.model_dump(exclude_unset=True)
+    city_data = city_update.dict(exclude_unset=True)
     if not city_data:
         return await get_city(db, city_id)
 

@@ -34,7 +34,7 @@ async def get_temperatures_by_city(
 
 
 async def create_temperature(db: AsyncSession, temperature: TemperatureCreate):
-    db_temperature = DBTemperature(**temperature.model_dump())
+    db_temperature = DBTemperature(**temperature.dict())
     db.add(db_temperature)
     await db.commit()
     await db.refresh(db_temperature)
